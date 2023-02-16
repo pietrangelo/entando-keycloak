@@ -4,23 +4,14 @@ on: [push, pull_request]
 
 jobs:
     buildx:
-    runs-on: ubuntu-latest
-    steps:
+      name: Buildx
+      runs-on: ubuntu-latest
+      steps:
     
       -
         name: Checkout
         uses: actions/checkout@v3
         
-      -
-        name: Setup Java JDK
-        uses: actions/setup-java@v3.10.0
-        with:
-         java-version: 11
-         
-      -
-        name: Build war
-        run: mvn package
-
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -43,6 +34,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
+          file: Dockerfile.keycloak
           push: true
           tags: pmasala/kc:0.0.1-alpha
           platforms: linux/amd64,linux/arm,linux/arm64

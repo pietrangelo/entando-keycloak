@@ -6,9 +6,20 @@ jobs:
     buildx:
     runs-on: ubuntu-latest
     steps:
+    
       -
         name: Checkout
         uses: actions/checkout@v3
+        
+      -
+        name: Setup Java JDK
+        uses: actions/setup-java@v3.10.0
+        with:
+         java-version: 11
+         
+      -
+        name: Build war
+        run: mvn package
 
       -
         name: Set up QEMU

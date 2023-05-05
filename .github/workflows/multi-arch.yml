@@ -44,5 +44,5 @@ jobs:
           context: .
           file: Dockerfile.keycloak
           push: true
-          tags: pmasala/kc:$GITHUB_REF_NAME
+          tags: pmasala/kc:${{ github.event.pull_request.title }}
           platforms: linux/amd64,linux/arm,linux/arm64

@@ -1,15 +1,15 @@
 name: PR-CYCLE
 
-on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-    branches:
-      - develop
-      - epic/*
-      - release/*
+# on:
+#   pull_request:
+#     types:
+#       - opened
+#       - synchronize
+#       - reopened
+#     branches:
+#       - develop
+#       - epic/*
+#       - release/*
 
 env:
   ENTANDO_OPT_USE_PPL_TAG: "v1.4.1"

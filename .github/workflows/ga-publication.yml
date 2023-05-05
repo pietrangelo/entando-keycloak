@@ -1,9 +1,9 @@
 name: GA Publication
 
-on:
-  release:
-    types:
-      - created
+# on:
+#   release:
+#     types:
+#       - created
 
 env:
   ENTANDO_OPT_USE_PPL_TAG: "v1.4.1"

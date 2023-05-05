@@ -1,9 +1,9 @@
 name: Internal Snapshot Publication
 
-on:
-  push:
-    tags:
-      - 'v*'
+# on:
+#   push:
+#     tags:
+#       - 'v*'
 
 env:
   ENTANDO_OPT_USE_PPL_TAG: "v1.4.1"

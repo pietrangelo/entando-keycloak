@@ -1,11 +1,11 @@
 name: Post-Merge
 
-on:
-  push:
-    branches:
-      - develop
-      - epic/*
-      - release/*
+# on:
+#   push:
+#     branches:
+#       - develop
+#       - epic/*
+#       - release/*
 
 env:
   ENTANDO_OPT_USE_PPL_TAG: "v1.4.1"
@@ -24,7 +24,7 @@ jobs:
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # SNAPSHOT TAG
-  
+
   add-version-tag:
     runs-on: ubuntu-latest
     steps:

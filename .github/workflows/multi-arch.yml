@@ -12,6 +12,9 @@ on:
   push:
     tags:
       - 'v*'
+    branches:
+      - develop
+      - release/*
 
 jobs:
     buildx:
@@ -34,13 +37,13 @@ jobs:
           # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule
-            type=ref,enabled=true,priority=50,event=branch
+            type=ref,event=branch
             type=ref,event=pr
             type=ref,event=tag
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-            type=sha
+            type=sha,format=long
 
       -
         name: Set up QEMU

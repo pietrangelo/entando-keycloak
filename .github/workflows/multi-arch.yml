@@ -1,4 +1,4 @@
-name: Build Multiarch Docker images
+name: Build Multi-arch Docker images
 
 on:
   pull_request:
@@ -38,11 +38,11 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       -
-        name: Build
+        name: Build keycloak
         uses: docker/build-push-action@v4
         with:
           context: .
           file: Dockerfile.keycloak
           push: true
-          tags: pmasala/kc:0.0.1-alpha
+          tags: pmasala/kc:$GITHUB_REF_NAME
           platforms: linux/amd64,linux/arm,linux/arm64

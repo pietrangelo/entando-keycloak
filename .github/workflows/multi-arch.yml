@@ -44,7 +44,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha
-            type=raw,value={{branch}}
+            type=raw,event=pr,value={{branch}}
 
       -
         name: Set up QEMU

@@ -38,12 +38,13 @@ jobs:
           tags: |
             type=schedule
             type=ref,event=branch
-            type=ref,event=pr,value={{branch}}-
+            type=ref,event=pr
             type=ref,event=tag
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-            type=sha,format=long
+            type=sha
+            type=raw,value={{branch}}
 
       -
         name: Set up QEMU

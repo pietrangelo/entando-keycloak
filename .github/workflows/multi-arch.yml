@@ -24,13 +24,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Docker meta
-        id: meta
+      - name: Docker meta-keycloak
+        id: meta-keycloak
         uses: docker/metadata-action@v4
         with:
           # List of Docker Images to use as base name for tags
           images: |
             pmasala/kc
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=schedule
+            type=ref,event=branch
+            type=ref,event=pr
+            type=ref,event=tag
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
+            type=raw,event=pr,value={{branch}}
+
+      - name: Docker meta-sso
+        id: meta-sso
+        uses: docker/metadata-action@v4
+        with:
+          # List of Docker Images to use as base name for tags
+          images: |
             pmasala/sso
           # generate Docker tags based on the following events/attributes
           tags: |
@@ -71,8 +89,8 @@ jobs:
           context: .
           file: Dockerfile.keycloak
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-keycloak.outputs.tags }}
+          labels: ${{ steps.meta-keycloak.outputs.labels }}
           platforms: linux/amd64,linux/arm64
 
       - name: Build sso
@@ -81,6 +99,6 @@ jobs:
           context: .
           file: Dockerfile.redhat-sso
           push: true
-          tags: ${{ steps.meta.output.tags }}
-          labels: ${{  steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-sso.output.tags }}
+          labels: ${{  steps.meta-sso.outputs.labels }}
           platforms: linux/amd64,linux/arm64

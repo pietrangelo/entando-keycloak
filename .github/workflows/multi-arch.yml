@@ -99,6 +99,6 @@ jobs:
           context: .
           file: Dockerfile.redhat-sso
           push: true
-          tags: ${{ steps.meta-sso.output.tags }}
+          tags: ${{ steps.meta-sso.outputs.tags }}
           labels: ${{  steps.meta-sso.outputs.labels }}
           platforms: linux/amd64,linux/arm64

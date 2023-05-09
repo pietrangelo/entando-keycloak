@@ -19,8 +19,8 @@ on:
       - IT-*
 
 jobs:
-  buildx:
-    name: Buildx
+  docker-buildx:
+    name: Buildx Docker images
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

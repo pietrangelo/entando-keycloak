@@ -43,7 +43,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha
-            type=raw,event=pr,value={{branch}}
+            type=raw,event=pr,value={{base_ref}}
 
       - name: Docker meta-sso
         id: meta-sso

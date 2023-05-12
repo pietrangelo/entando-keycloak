@@ -35,7 +35,7 @@ jobs:
           configuration_path: ".github/pr-title-checker-config.json"
 
   docker-buildx:
-    if: ${{ github.event_name == 'pull_request' && jobs.check-pr.if == 'success' }}
+    needs: ["check-pr"]
     name: Buildx Docker images
     runs-on: ubuntu-latest
     steps:

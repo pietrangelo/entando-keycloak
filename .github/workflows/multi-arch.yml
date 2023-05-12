@@ -21,6 +21,9 @@ on:
       - ENGPM-*
       - IT-*
 
+permissions:
+  contents: write
+
 jobs:
   check-pr:
     runs-on: ubuntu-latest
@@ -30,7 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           pass_on_octokit_error: false
           configuration_path: ".github/pr-title-checker-config.json"
- 
+
   docker-buildx:
     name: Buildx Docker images
     runs-on: ubuntu-latest
@@ -49,13 +52,13 @@ jobs:
           tags: |
             type=schedule
             type=ref,event=branch
-            type=ref,event=pr,value={{base_ref}}
+            type=ref,event=pr,value={{head_ref}}
             type=ref,event=tag
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha
-            type=raw,event=pr,value={{base_ref}}
+            type=raw,event=pr,value={{head_ref}}
 
       - name: Docker meta-sso
         id: meta-sso

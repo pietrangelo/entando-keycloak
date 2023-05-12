@@ -1,11 +1,13 @@
-name: Build Multi-arch Docker images
+name: "Entando CI Docker images"
 
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - synchronized
-      - reopened
+      - edited
+      - labeled
+      - unlabeled
     branches:
       - develop
       - release/*
@@ -16,9 +18,19 @@ on:
       - develop
       - release/*
       - ENG-*
+      - ENGPM-*
       - IT-*
 
 jobs:
+  check-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: thehanimo/pr-title-checker@v1.3.7
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pass_on_octokit_error: false
+          configuration_path: ".github/pr-title-checker-config.json"
+ 
   docker-buildx:
     name: Buildx Docker images
     runs-on: ubuntu-latest

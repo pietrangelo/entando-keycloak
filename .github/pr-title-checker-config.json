@@ -4,7 +4,7 @@
         "color": "EEEEEE"
     },
     "CHECKS": {
-        "regexp": "[A-Z]{2,5}-[0-9]{1,5}"
+        "regexp": "[A-Z]{2,5}-[0-9]{1,5} ([[:space:]]|:)"
     },
     "MESSAGES": {
         "success": "All OK",

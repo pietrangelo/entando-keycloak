@@ -1,11 +1,13 @@
-name: Build Multi-arch Docker images
+name: "Entando CI Docker images"
 
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - synchronized
-      - reopened
+      - edited
+      - labeled
+      - unlabeled
     branches:
       - develop
       - release/*
@@ -16,11 +18,21 @@ on:
       - develop
       - release/*
       - ENG-*
+      - ENGPM-*
       - IT-*
 
 jobs:
-  buildx:
-    name: Buildx
+  check-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: thehanimo/pr-title-checker@v1.3.7
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pass_on_octokit_error: false
+          configuration_path: ".github/pr-title-checker-config.json"
+ 
+  docker-buildx:
+    name: Buildx Docker images
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,13 +49,13 @@ jobs:
           tags: |
             type=schedule
             type=ref,event=branch
-            type=ref,event=pr
+            type=ref,event=pr,value={{base_ref}}
             type=ref,event=tag
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha
-            type=raw,event=pr,value={{branch}}
+            type=raw,event=pr,value={{base_ref}}
 
       - name: Docker meta-sso
         id: meta-sso
@@ -103,4 +115,4 @@ jobs:
           push: true
           tags: ${{ steps.meta-sso.outputs.tags }}
           labels: ${{  steps.meta-sso.outputs.labels }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64

@@ -21,6 +21,9 @@ on:
       - ENGPM-*
       - IT-*
 
+permissions:
+  contents: write
+
 jobs:
   check-pr:
     runs-on: ubuntu-latest

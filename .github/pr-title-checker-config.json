@@ -1,7 +1,7 @@
 {
     "LABEL": {
         "name": "title needs correct naming convention",
-        "color": "EEEEEE"
+        "color": "ec8400"
     },
     "CHECKS": {
         "regexp": "[A-Z]{2,5}-[0-9]{1,5} ([[:space:]]|:)"

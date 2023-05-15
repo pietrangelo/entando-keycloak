@@ -21,12 +21,13 @@ on:
       - ENGPM-*
       - IT-*
 
-permissions:
-  contents: write
+permissions: write-all
 
 jobs:
   check-pr:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request_target' || github.event_name == 'pull_request' }}
+    permissions: write-all
     steps:
       - uses: thehanimo/pr-title-checker@v1.3.7
         with:
@@ -35,7 +36,6 @@ jobs:
           configuration_path: ".github/pr-title-checker-config.json"
 
   docker-buildx:
-    needs: ["check-pr"]
     name: Buildx Docker images
     runs-on: ubuntu-latest
     steps:

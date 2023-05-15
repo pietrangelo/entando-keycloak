@@ -28,6 +28,9 @@ jobs:
   check-pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request_target' || github.event_name == 'pull_request' }}
+    permissions:
+      contents: write
+      actions: write
     steps:
       - uses: thehanimo/pr-title-checker@v1.3.7
         with:

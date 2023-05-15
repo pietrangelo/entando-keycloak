@@ -9,6 +9,6 @@
     "MESSAGES": {
         "success": "All OK",
         "failure": "Failing PR test",
-        "notice": "Check the naming convention rules to naming PRs"
+        "notice": "Please check the naming convention rules for naming PRs"
     }
 }

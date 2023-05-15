@@ -21,16 +21,13 @@ on:
       - ENGPM-*
       - IT-*
 
-permissions:
-  contents: write
+permissions: write-all
 
 jobs:
   check-pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request_target' || github.event_name == 'pull_request' }}
-    permissions:
-      contents: write
-      actions: write
+    permissions: write-all
     steps:
       - uses: thehanimo/pr-title-checker@v1.3.7
         with:

@@ -29,7 +29,8 @@ jobs:
     if: ${{ github.event_name == 'pull_request_target' || github.event_name == 'pull_request' }}
     permissions: write-all
     steps:
-      - uses: thehanimo/pr-title-checker@v1.3.7
+      - name: Check-pr-syntax
+        uses: thehanimo/pr-title-checker@v1.3.7
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           pass_on_octokit_error: false
@@ -38,7 +39,7 @@ jobs:
   docker-buildx:
     name: Buildx
     runs-on: ubuntu-latest
-    if: check-pr == 'success' || github.event_name != 'pull_request_target'
+    if: ${{ sucess() }} || github.event_name != 'pull_request_target'
     steps:
       - name: Checkout
         uses: actions/checkout@v3

@@ -4,7 +4,7 @@
         "color": "ec8400"
     },
     "CHECKS": {
-        "regexp": "IT-231"
+        "regexp": "[A-Z]{2,5}-[0-9]{1,5}"
     },
     "MESSAGES": {
         "success": "All OK",

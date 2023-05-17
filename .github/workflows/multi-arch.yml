@@ -38,7 +38,7 @@ jobs:
   docker-buildx:
     name: Buildx
     runs-on: ubuntu-latest
-    if: jobs.check-pr == 'success' || github.event_name != 'pull_request_target'
+    if: job.check-pr == 'success' || github.event_name != 'pull_request_target'
     steps:
       - name: Checkout
         uses: actions/checkout@v3

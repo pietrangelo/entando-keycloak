@@ -4,7 +4,7 @@ on:
   pull_request_target:
     types:
       - opened
-      - synchronized
+      - synchronize
       - edited
       - labeled
       - unlabeled
@@ -38,7 +38,7 @@ jobs:
   docker-buildx:
     name: Buildx
     runs-on: ubuntu-latest
-    if: job.check-pr == 'success' || github.event_name != 'pull_request_target'
+    if: check-pr == 'success' || github.event_name != 'pull_request_target'
     steps:
       - name: Checkout
         uses: actions/checkout@v3

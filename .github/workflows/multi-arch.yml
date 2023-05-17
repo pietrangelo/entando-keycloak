@@ -1,6 +1,16 @@
 name: "Entando CI Docker images"
 
 on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - edited
+      - labeled
+      - unlabeled
+    branches:
+      - develop
+      - release/*
   push:
     tags:
       - "v*"
@@ -18,6 +28,14 @@ jobs:
     name: Buildx
     runs-on: ubuntu-latest
     steps:
+      - name: Check PR
+        id: check-pr
+        uses: thehanimo/pr-title-checker@v1.3.7
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pass_on_octokit_error: false
+          configuration_path: ".github/pr-title-checker-config.json"
+
       - name: Checkout
         uses: actions/checkout@v3
 
